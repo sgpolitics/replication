@@ -1,16 +1,5 @@
-# belongs to another repository
-docs/
-Replication*/
-
-# files for anothre repository
-*.pdf
-*.html
-*.css
-*.js
-*.yaml
-*.jpg
-*.png
-*.note
+# files not for git
+*.zip
 
 # Eclipse Metadata
 .metadata/
