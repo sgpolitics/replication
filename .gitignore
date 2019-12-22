@@ -1,0 +1,22 @@
+# belongs to another repository
+docs/
+Replication*/
+
+# files for anothre repository
+*.pdf
+*.html
+*.css
+*.js
+*.yaml
+*.jpg
+*.png
+*.note
+
+# Eclipse Metadata
+.metadata/
+
+# Mac OS X clutter
+*.DS_Store
+
+# Windows clutter
+Thumbs.db
