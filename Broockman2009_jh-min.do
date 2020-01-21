@@ -1,5 +1,5 @@
 cd "C:\Users\J\Dropbox\대학원\과학으로서의정치학회\Replication2019FW"
-use Broockman2009 , clear
+use Broockman2009, clear
 
 *** 전처리: Table 1
 
@@ -25,29 +25,29 @@ use Broockman2009 , clear
 	*/
 
 	* model (1): .1010** (.0185)
-		reg dv_c_t2 i.victory##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1 if abs(dv_c_t1)<0.25 , vce(robust)
+		reg dv_c_t2 i.victory##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1 if abs(dv_c_t1)<0.25, vce(robust)
 
 	* model (2): .1079** (.0154)
-		reg dv_c_t2 i.victory##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1 if abs(dv_c_t1)<0.25 & t2_is_midterm==0 , vce(robust)
+		reg dv_c_t2 i.victory##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1 if abs(dv_c_t1)<0.25 & t2_is_midterm==0, vce(robust)
 
 	* model (3): .0947** (.0156)
-		xtreg dv_c_t2 i.victory##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1 if abs(dv_c_t1)<0.25 & t2_is_midterm==0 , vce(robust) fe
-		areg dv_c_t2 i.victory##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1 if abs(dv_c_t1)<0.25 & t2_is_midterm==0 , vce(robust) a(stateyear)
+		xtreg dv_c_t2 i.victory##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1 if abs(dv_c_t1)<0.25 & t2_is_midterm==0, vce(robust) fe
+		areg dv_c_t2 i.victory##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1 if abs(dv_c_t1)<0.25 & t2_is_midterm==0, vce(robust) a(stateyear)
 
 	* model (4): .0056 (.0144)
-		reg dv_p_t2 i.victory##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1 if abs(dv_c_t1)<0.25 & t2_is_midterm==0 , vce(robust)
+		reg dv_p_t2 i.victory##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1 if abs(dv_c_t1)<0.25 & t2_is_midterm==0, vce(robust)
 
 	* model (5): -.0043 (.0099)
-		xtreg dv_p_t2 i.victory##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1 if abs(dv_c_t1)<0.25 & t2_is_midterm==0 , vce(robust) fe
-		areg dv_p_t2 i.victory##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1 if abs(dv_c_t1)<0.25 & t2_is_midterm==0 , vce(robust) a(stateyear)
+		xtreg dv_p_t2 i.victory##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1 if abs(dv_c_t1)<0.25 & t2_is_midterm==0, vce(robust) fe
+		areg dv_p_t2 i.victory##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1 if abs(dv_c_t1)<0.25 & t2_is_midterm==0, vce(robust) a(stateyear)
 
 *** 그래프
 
 	* generate variables for bin scatter plots
-		egen bin = cut(dv_c_t1) if t2_is_midterm==0 , at(-0.5(0.005)0.5) // 독립변수를 0.5 percentage point wide 구간으로 쪼갬
-		egen dv_c_t1_bin = mean(dv_c_t1) , by(bin)
-		egen dv_c_t2_bin = mean(dv_c_t2) , by(bin)
-		egen dv_p_t2_bin = mean(dv_p_t2) , by(bin)
+		egen bin=cut(dv_c_t1) if t2_is_midterm==0, at(-0.5(0.005)0.5) // 독립변수를 0.5 percentage point wide 구간으로 쪼갬
+		egen dv_c_t1_bin=mean(dv_c_t1), by(bin)
+		egen dv_c_t2_bin=mean(dv_c_t2), by(bin)
+		egen dv_p_t2_bin=mean(dv_p_t2), by(bin)
 
 	* generate variables for fitted lines and confidence intervals
 		areg dv_c_t2 i.victory##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1 if abs(dv_c_t1)<0.25 & t2_is_midterm==0, vce(robust) a(stateyear) // model (3)
@@ -66,38 +66,38 @@ use Broockman2009 , clear
 		graph set window fontface "Sandoll 고딕 TTF 03 Bold" // 그래프 범례 및 축 표시에 사용될 폰트를 지정
 
 	* Fig. 1
-		twoway (scatter dv_c_t2_bin dv_c_t1_bin if abs(dv_c_t1)<0.15 , /// 산점도 출력
+		twoway (scatter dv_c_t2_bin dv_c_t1_bin if abs(dv_c_t1)<0.15, /// 산점도 출력
 			ylabel(-0.2(0.05)0.2) xlabel(-0.15(0.05)0.15, nogrid) /// x,y축 구간 지정
 			xline(0, lp(solid) lc(gs10)) /// x=0에 직선 출력
 			mcolor(gs4%50)) ///
-			(line yhat_c dv_c_t1 if abs(dv_c_t1)<0.15 , sort /// 회귀선 출력
+			(line yhat_c dv_c_t1 if abs(dv_c_t1)<0.15, sort /// 회귀선 출력
 			ylabel(-0.2(0.05)0.2) xlabel(-0.15(0.05)0.15, nogrid) /// x,y축 구간 지정
 			lp(solid) lc(gs4%50) legend(off)) ///
-			(line yhatu_c dv_c_t1 if abs(dv_c_t1)<0.15 , sort /// 신뢰구간 상한 출력
+			(line yhatu_c dv_c_t1 if abs(dv_c_t1)<0.15, sort /// 신뢰구간 상한 출력
 			ylabel(-0.2(0.05)0.2) xlabel(-0.15(0.05)0.15, nogrid) /// x,y축 구간 지정
 			lp(dash) lc(gs4%50) legend(off)) ///
-			(line yhatl_c dv_c_t1 if abs(dv_c_t1)<0.15 , sort /// 신뢰구간 하한 출력
+			(line yhatl_c dv_c_t1 if abs(dv_c_t1)<0.15, sort /// 신뢰구간 하한 출력
 			ylabel(-0.2(0.05)0.2) xlabel(-0.15(0.05)0.15, nogrid) /// x,y축 구간 지정
 			lp(dash) lc(gs4%50) legend(off) ///
 			xtitle("Democratic Congressional Margin of Victory Time 1") ytitle("Democratic Congressional Margin of Victory Time 2"))
-		graph export "dv_c_t2.tif", as(tif) replace
+		graph export "Broockman2009_Fig. 1.tif", as(tif) replace
 
 	* Fig. 2
-		twoway (scatter dv_p_t2_bin dv_c_t1_bin if abs(dv_c_t1)<0.15 , /// 산점도 출력
+		twoway (scatter dv_p_t2_bin dv_c_t1_bin if abs(dv_c_t1)<0.15, /// 산점도 출력
 			ylabel(-0.2(0.05)0.2) xlabel(-0.15(0.05)0.15, nogrid) /// x,y축 구간 지정
 			xline(0, lp(solid) lc(gs10)) /// x=0에 직선 출력
 			mcolor(gs4%50)) ///
-			(line yhat_p dv_c_t1 if abs(dv_c_t1)<0.15 , sort /// 회귀선 출력
+			(line yhat_p dv_c_t1 if abs(dv_c_t1)<0.15, sort /// 회귀선 출력
 			ylabel(-0.2(0.05)0.2) xlabel(-0.15(0.05)0.15, nogrid) /// x,y축 구간 지정
 			lp(solid) lc(gs4%50) legend(off)) ///
-			(line yhatu_p dv_c_t1 if abs(dv_c_t1)<0.15 , sort /// 신뢰구간 상한 출력
+			(line yhatu_p dv_c_t1 if abs(dv_c_t1)<0.15, sort /// 신뢰구간 상한 출력
 			ylabel(-0.2(0.05)0.2) xlabel(-0.15(0.05)0.15, nogrid) /// x,y축 구간 지정
 			lp(dash) lc(gs4%50) legend(off)) ///
-			(line yhatl_p dv_c_t1 if abs(dv_c_t1)<0.15 , sort /// 신뢰구간 하한 출력
+			(line yhatl_p dv_c_t1 if abs(dv_c_t1)<0.15, sort /// 신뢰구간 하한 출력
 			ylabel(-0.2(0.05)0.2) xlabel(-0.15(0.05)0.15, nogrid) /// x,y축 구간 지정
 			lp(dash) lc(gs4%50) legend(off) ///
 			xtitle("Democratic Congressional Margin of Victory Time 1") ytitle("Democratic Presidential Margin of Victory Time 2"))
-		graph export "dv_p_t2.tif", as(tif) replace
+		graph export "Broockman2009_Fig. 2.tif", as(tif) replace
 
 *** Appendix: Table 1A (일부 값 반올림 수준에서 불일치)
 
@@ -124,7 +124,7 @@ use Broockman2009 , clear
 				}
 				foreach dep of varlist dv_c_t2 dv_p_t2 {
 				* loop over Dependent variables
-					`regtype' `dep' i.victory##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1 if `bandwidth' & t2_is_midterm==0 , vce(robust) `fixed'
+					`regtype' `dep' i.victory##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1 if `bandwidth' & t2_is_midterm==0, vce(robust) `fixed'
 					local coef_`dep'=_b[1.victory] // 종속변수별로 계수값 저장
 					local se_`dep'=_se[1.victory] // 종속변수별로 표준오차값 저장
 					local space_`dep' "" // -부호 유무를 고려한 계수값 정렬
