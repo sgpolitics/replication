@@ -22,15 +22,6 @@ ta t2_year if dv_p_t2!=0
 gen victory = 0
 replace victory = 1 if dv_c_t1 >= 0
 
-gen vi_2 = dv_c_t1^2
-gen vi_3 = dv_c_t1^3
-gen vi_4 = dv_c_t1^4
-
-gen vidi = dv_c_t1 * victory
-gen vidi_2 = vi_2 * victory
-gen vidi_3 = vi_3 * victory
-gen vidi_4 = vi_4 * victory
-
 reg dv_c_t2 i.victory##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1 if abs(dv_c_t1)<0.25, vce(robust)
 reg dv_c_t2 i.victory##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1 if abs(dv_c_t1)<0.25&t2_is_midterm==0, vce(robust)
 areg dv_c_t2 i.victory##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1 if abs(dv_c_t1)<0.25 & t2_is_midterm==0, vce(robust) a(t2_year)
@@ -40,13 +31,13 @@ areg dv_p_t2 i.victory##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1 if abs(dv_c_t
 **
 
 areg dv_c_t2 i.victory##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1 if abs(dv_c_t1)<0.25 & t2_is_midterm==0, vce(robust) a(t2_year)
-rdplot dv_c_t2 dv_c_t1 if abs(dv_c_t1)<0.15, c(0) nbins(30 30) p(4) graph_options(xlabel(-0.15(0.05)0.15) legend(off) xtitle("DVCT1") ytitle("DCVT2")) ci(95) shade genvars p(2)
+rdplot dv_c_t2 dv_c_t1 if abs(dv_c_t1)<0.15, c(0) nbins(30 30) p(4) graph_options(xlabel(-0.15(0.05)0.15) legend(off) xtitle("DVCT1") ytitle("DCVT2")) ci(95) shade genvars
 
 areg dv_p_t2 i.victory##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1##c.dv_c_t1 if abs(dv_c_t1)<0.25 & t2_is_midterm==0, vce(robust) a(t2_year)
-rdplot dv_c_t2 dv_c_t1 if abs(dv_c_t1)<0.15, c(0) nbins(30 30) p(4) graph_options(xlabel(-0.15(0.05)0.15) legend(off) xtitle("DVCT1") ytitle("DPVT2")) ci(95) shade genvars p(2)
+rdplot dv_p_t2 dv_c_t1 if abs(dv_c_t1)<0.15, c(0) nbins(30 30) p(4) graph_options(xlabel(-0.15(0.05)0.15) legend(off) xtitle("DVCT1") ytitle("DPVT2")) ci(95) shade genvars
 
-** variable rdplot_id already defined
-r(110); **
+/* variable rdplot_id already defined
+r(110); */
 
 
 
