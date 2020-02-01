@@ -1,8 +1,9 @@
 # belongs to another repository
 docs/
+Design*/
 Replication*/
 
-# files for anothre repository
+# files for another repository
 *.pdf
 *.html
 *.css
@@ -11,6 +12,9 @@ Replication*/
 *.jpg
 *.png
 *.note
+
+# for other purposes
+행정/
 
 # Eclipse Metadata
 .metadata/
