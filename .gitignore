@@ -1,11 +1,12 @@
 # files not for git
 *.zip
-Broockman2009/
-Broockman2014/
-CTV2019/
-Garcia2015/
-KG2008/
-Kim2019/
+*/
+!optional/
+optional/*/
+# !optional/A1/
+# optional/A1/*/
+# !optional/A2/
+# optional/A2/*/
 
 # Eclipse Metadata
 .metadata/
