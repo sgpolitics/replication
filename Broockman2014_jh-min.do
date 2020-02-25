@@ -56,7 +56,7 @@ use Broockman2014, clear
 			xtreg `dv' `rdvarlist' if `bandwidth', fe
 			local t1f_`i'_1b : di %4.3f _b[1.womanwon]
 			local t1f_`i'_1se : di "(" %4.3f _se[1.womanwon] ")"
-			local t1f_`i'_1 "`t1_`i'_1b' `t1_`i'_1se'"
+			local t1f_`i'_1 "`t1f_`i'_1b' `t1f_`i'_1se'"
 			local t1f_`i'_2 "Yes"
 			local t1f_`i'_3 "n/a"
 			local t1f_`i'_4 : di %4.3f e(r2)
