@@ -11,6 +11,9 @@ Replication*/
 *.yaml
 *.jpg
 *.png
+
+# files not for git
+*.hwp
 *.note
 
 # for other purposes
